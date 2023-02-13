@@ -37,8 +37,36 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
+
+const MorseObjectZero = {};
+for (key in MORSE_TABLE) {
+let primer ='';
+[key].splice("").map(function (x){
+for (point of x) {
+if (point===".") {
+primer +="10"}
+if (point=== "-") {
+primer += "11"} 
+} 
+while (primer.length<10) {
+let doubleZero = "00";
+primer = doubleZero.concat(primer);
+}  
+       
+    return MorseObjectZero[primer] = MORSE_TABLE[key];
+   });  
+}
+MorseObjectZero["**********"] = " ";
+
 function decode(expr) {
-    // write your solution here
+let word = '';
+for (i=0; i<expr.length; i+=10 ){
+if (i === " ") {
+word += " ";
+}
+word += MorseObjectZero[expr.slice(i, i+10)]; 
+}
+return word;    
 }
 
 module.exports = {
